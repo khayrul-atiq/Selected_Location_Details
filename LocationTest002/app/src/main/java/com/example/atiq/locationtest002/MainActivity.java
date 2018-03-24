@@ -7,7 +7,9 @@ import android.widget.Button;
 
 //import com.google.android.gms.location.places.Place;
 //import com.google.android.gms.location.places.ui.PlacePicker;
-
+import com.google.android.gms.location.places.Place; // "Place" is not resolved
+import com.google.android.gms.location.places.ui.PlacePicker; // "ui" is not resolved
+import com.google.android.gms.maps.model.LatLng;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,19 +19,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-        try {
-            // for activty
-            startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
-            // for fragment
-            //startActivityForResult(builder.build(getActivity()), PLACE_PICKER_REQUEST);
-        } catch (GooglePlayServicesRepairableException e) {
-            e.printStackTrace();
-        } catch (GooglePlayServicesNotAvailableException e) {
-            e.printStackTrace();
-        }
 
-        /*
         Button gotoButton = (Button) findViewById(R.id.button);
 
         gotoButton.setOnClickListener(new View.OnClickListener() {
@@ -37,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 startPlacePickerActivity();
             }
-        });*/
+        });
 
     }
 
@@ -46,25 +36,6 @@ public class MainActivity extends AppCompatActivity {
         //Plac
         //PlacePicker.
     }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        checkPermissionOnActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == RESULT_OK) {
-            switch (requestCode){
-                case PLACE_PICKER_REQUEST:
-                    Place place = PlacePicker.getPlace(this, data);
-                    String placeName = String.format("Place: %s", place.getName());
-                    double latitude = place.getLatLng().latitude
-                    double longitude = place.getLatLng().longitude;
-
-            }
-        }
-    }
-
-
 
 
 
